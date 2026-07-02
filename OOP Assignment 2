@@ -1,0 +1,55 @@
+# 1. Create a parent class Person
+class Person:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+    def display_info(self):
+        print(f"Name: {self.name}, Age: {self.age}")
+
+
+# 2. Create child classes using inheritance
+class Student(Person):
+    def __init__(self, name: str, age: int, student_id: str):
+        # 3. Use super() to initialize inherited attributes
+        super().__init__(name, age)
+        self.student_id = student_id
+
+    # Unique method for Student
+    def enroll_course(self, course_name: str):
+        print(f"Student {self.name} has successfully enrolled in {course_name}.")
+
+    # 5. Override display_info() to include unique ID using super()
+    def display_info(self):
+        super().display_info()  # Displays Name and Age from Parent
+        print(f"Student ID: {self.student_id}")
+
+
+class Lecturer(Person):
+    def __init__(self, name: str, age: int, employee_id: str):
+        # 3. Use super() to initialize inherited attributes
+        super().__init__(name, age)
+        self.employee_id = employee_id
+
+    # Unique method for Lecturer
+    def teach_course(self, course_name: str):
+        print(f"Lecturer {self.name} is now teaching {course_name}.")
+
+
+# 4. Create objects and demonstrate functionality
+if __name__ == "__main__":
+    print("--- Demonstrating Student Class (Overridden display_info) ---")
+    # Creating a student object
+    student1 = Student(name="Kwame Mensah", age=21, student_id="UMaT-2024-045")
+    # Demonstrating the overridden display_info method
+    student1.display_info()
+    # Executing unique method
+    student1.enroll_course("Object-Oriented Programming")
+
+    print("\n--- Demonstrating Lecturer Class (Inherited display_info) ---")
+    # Creating a lecturer object
+    lecturer1 = Lecturer(name="Dr. Arhin", age=42, employee_id="EMP-UMaT-889")
+    # Demonstrating inherited display_info method
+    lecturer1.display_info()
+    # Executing unique method
+    lecturer1.teach_course("Electromagnetism")
